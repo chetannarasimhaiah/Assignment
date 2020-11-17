@@ -26,4 +26,4 @@
 
 ### Architecture
 
-
+![image](https://user-images.githubusercontent.com/61533898/99406894-7ab99700-2914-11eb-8a65-4df989fd76dc.png)
