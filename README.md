@@ -1,12 +1,12 @@
 # Assignment
-##Use case 1:
+## Use case 1:
  
 Install Kafka Cluster with Zookeeper enabled - Write a Rest API to publish and Consumer the messages.
 Have a Kafka cluster on both the region / Datacentre and configure Mirror making (Open source)
 Explore Cruise control – open source plug-in and develop a POC for your Kafka clusters
 Write a API using Kafka API to Delete the messages within the give Kafka and Delete the topic
  
-##Use case 2:
+## Use case 2:
  
 Understand Pulsar and try to provide your POV on Apache Pulsar vs Apache Kafka
 Understand ~~Google~~ AWS SQS & SNS and provide a POV document
