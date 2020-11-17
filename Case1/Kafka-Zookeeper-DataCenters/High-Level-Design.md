@@ -16,6 +16,8 @@
 - Follow the same in other data centers.
 - Create topics and validate with simple cli producer/consumer
 
+![image](https://user-images.githubusercontent.com/61533898/99406894-7ab99700-2914-11eb-8a65-4df989fd76dc.png)
+
 ### Setting up Mirroring between two data centers:
 
 - Set up mirroring configurations for both producer and consumer.
@@ -23,7 +25,5 @@
 - Start mirroring service.
 - Validate mirroring between source and destination Data centers.
 
+![image](https://user-images.githubusercontent.com/61533898/99408737-8d34d000-2916-11eb-92fa-350a256c1b3b.png)
 
-### Architecture
-
-![image](https://user-images.githubusercontent.com/61533898/99406894-7ab99700-2914-11eb-8a65-4df989fd76dc.png)
