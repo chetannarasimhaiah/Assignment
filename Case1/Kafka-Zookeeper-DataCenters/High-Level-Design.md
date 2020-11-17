@@ -24,3 +24,6 @@
 - Validate mirroring between source and destination Data centers.
 
 
+### Architecture
+
+
