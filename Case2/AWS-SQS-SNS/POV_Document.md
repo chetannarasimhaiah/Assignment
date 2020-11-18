@@ -2,6 +2,8 @@
 
 ## SQS (Simple Queue Services) SNS (Simple Notification Services)
 
+### Basic Differences
+
 SQS  | SNS
 ---- | -----
 Queueing service for message processing | Publisher/Subscriber system
@@ -18,5 +20,26 @@ SQS is mainly used to decouple applications or integrate applications. | SNS dis
 Messages can be stored in SQS for short duration of time (max 14 days) | 
 
 
+### Categories and comparisions :
+
+Category | SQS | SNS
+-------- | --- | ---
+Entity Type | Queue (Similar to JMS) | Topic (Pub/Sub system)
+Message consumption | Pull Mechanism - Consumers poll and pull messages from SQS | Push Mechanism - SNS Pushes messages to consumers
+Use Case | Decoupling 2 applications and allowing parallel asynchronous processing | Fanout - Processing the same message in multiple ways
+Persistence | Messages are persisted for some (configurable) duration if no consumer is available (max 2 weeks), so consumer does not have to be up when messages added to queue. | No persistence. Whichever consumer is present at the time of message arrival gets the message and the message is deleted. If no consumers are available then the message is lost after a few retries.
+Consumer Type | each message is processed once by one consumer, hence process the messages in exact same way | The consumers might process the messages in different ways
+Sample applications | Jobs framework: The Jobs are submitted to SQS and the consumers at the other end can process the jobs asynchronously. If the job frequency increases, the number of consumers can simply be increased to achieve better throughput. | Image processing. If someone uploads an image to S3 then watermark that image, create a thumbnail and also send a Thank You email. In that case S3 can publish notifications to a SNS Topic with 3 consumers listening to it. 1st one watermarks the image, 2nd one creates a thumbnail and the 3rd one sends a Thank You email. All of them receive the same message (image URL) and do their processing in parallel.
+
+
+### Simple architecture:
+
+#### SQS :
+
+![image](https://user-images.githubusercontent.com/61533898/99518155-37b00000-29b6-11eb-8655-15d117cd6b42.png)
+
+#### SNS :
+
+![image](https://user-images.githubusercontent.com/61533898/99518232-4d252a00-29b6-11eb-9983-7f52a10d39c3.png)
 
 
