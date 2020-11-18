@@ -1,5 +1,7 @@
 ## Simple POC using Amazon SQS SNS with simple publish/subscribe
 
+To implement a fan-out system, in which multiple subscribers can consume a single message, you can combine Amazon SQS with Amazon Simple Notification Service (SNS), which delivers push notifications to a variety of devices and endpoints. You subscribe an Amazon SQS queue to an Amazon SNS topic, and when a message is published to the topic, Amazon SNS sends an Amazon SQS message to the subscribed queue.
+
 Publish Messages to SNS topic which is inturn subscribed by SQS/Email etc. 
 
 1. Use Amazon SQS to create a simple Queue
