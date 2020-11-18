@@ -1,3 +1,13 @@
+/******************************************************************/
+/*KafkaService class is used for creating methods for various restful calls */
+/* Creating Four different methods */
+/*1. publishMessage - Publish the message to kafka topic */
+/*2. consumeMessage - Consume a message from a particular topic */
+/*3. deleteTopic - Delete a given topic */
+/*4. deleteMessages - Delete all messages in a particular topic */
+/******************************************************************/
+
+
 package com.lowes.kafka.api.Service;
 
 import org.apache.kafka.clients.admin.AdminClient;
@@ -34,10 +44,13 @@ import java.util.concurrent.Future;
 @Service
 public class KafkaService {
 
+    //Method to publish a message to a kafka topic
+    // Input parameters - Broker URL, Topic name, key and value
+    // Response parameters - Success/failure, message sent. offset, partition, key and value
     public KafkaResponse publishMessage(String brokerUrl,String topic,String key,String value){
-    	
+
     	KafkaResponse response=new KafkaResponse();
-    	
+
         Properties props = new Properties();
         props.put("bootstrap.servers", brokerUrl);
         props.put("acks", "all");
@@ -49,7 +62,7 @@ public class KafkaService {
         while(result.isDone()==false) {
         	System.out.println("Waiting for producer to send message to broker");
         }
-        
+
         try {
         	response.setStatus(true);
         	KafkaMessage message=new KafkaMessage();
@@ -63,33 +76,37 @@ public class KafkaService {
 			response.setError("Not able to send message "+e.getMessage());
 			System.out.println("Error in sending data to kafka");
 			e.printStackTrace();
-		}        
-            
+		}
+
         producer.close();
 
         return response;
     }
+
+    // Method to Consume a message from a kafka topic
+    // Input parameters - Broker URL, Topic name, consumer group name
+    // Response parameters - Consumed message, offset, parititon
     public KafkaResponse consumeMessage(String brokerUrl,String topic,String consumerGroup){
-    	
+
     	KafkaResponse response=new KafkaResponse();
-    	
+
     	 Properties props = new Properties();
          props.put("bootstrap.servers", brokerUrl);
          props.put("group.id", consumerGroup);
          props.put("enable.auto.commit", "true");
          props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
          props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-         
+
          KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
-         
+
          consumer.subscribe(Arrays.asList(topic));
-         
+
          response.setStatus(true);
-         
+
          int retry=10;
          while(retry>0) {
         	 --retry;
-         
+
              ConsumerRecords<String, String> records = consumer.poll(1000);
              if(records.count()>0)
             	 retry=0;
@@ -102,7 +119,7 @@ public class KafkaService {
              	message.setValue(record.value());
              	response.getMessages().add(message);
              }
-             
+
              try {
 				Thread.sleep(5000);
 			} catch (InterruptedException e) {
@@ -111,68 +128,61 @@ public class KafkaService {
 			}
          }
          consumer.close();
-                
+
         return response;
     }
 
+    // Method to delete a topic from kafka
+    // Input parameters - Broker URL, Topic name
+    // Response parameters - Success/failure
     public KafkaResponse deleteTopic(String brokerUrl,String topic){
-    	
+
     	KafkaResponse response=new KafkaResponse();
-    	
-    	
     	  Properties config = new Properties();
           config.put("bootstrap.servers", brokerUrl);
           AdminClient admin = AdminClient.create(config);
           List<String> topicsToDelete=new ArrayList<String>();
           topicsToDelete.add(topic);
-          
-          DeleteTopicsResult result=admin.deleteTopics(topicsToDelete); 
+
+          DeleteTopicsResult result=admin.deleteTopics(topicsToDelete);
           response.setStatus(true);
         return response;
     }
-    
+
+    // Method to delete all messages from a topic in kafka
+    // Input parameters - Broker URL, Topic name
+    // Response parameters - Success/failure
     public KafkaResponse deleteMessages(String brokerUrl,String topic){
     	KafkaResponse response=new KafkaResponse();
-    	
-    	
   	  Properties brokerConfig = new Properties();
   	  brokerConfig.put("bootstrap.servers", brokerUrl);
-  	  
+
       AdminClient admin = AdminClient.create(brokerConfig);
-        
+
       ConfigResource configResource = new ConfigResource(ConfigResource.Type.TOPIC, topic);
-      
+      //convert retention time to 0
       List<ConfigEntry> entries = new ArrayList<>();
-      entries.add(new ConfigEntry(TopicConfig.RETENTION_MS_CONFIG, String.valueOf(0)));  
-        
-     
+      entries.add(new ConfigEntry(TopicConfig.RETENTION_MS_CONFIG, String.valueOf(0)));
         Config topicConfig = new Config(entries);
-        
         Map<ConfigResource, Config> alterConfigs = new HashMap<ConfigResource, Config>();
-        
-        alterConfigs.put(configResource, topicConfig);  
-       
+        alterConfigs.put(configResource, topicConfig);
         AlterConfigsResult result=admin.alterConfigs(alterConfigs);
-        
         try {
         	Thread.sleep(10000);
         }catch(Exception e) {
-        	
+
         }
-        
-        //reset retention back to 4 hours 
-        
-       
-        
+
+        //reset retention back to 4 hours
         entries = new ArrayList<>();
-        entries.add(new ConfigEntry(TopicConfig.RETENTION_MS_CONFIG, String.valueOf("14400000")));  
+        entries.add(new ConfigEntry(TopicConfig.RETENTION_MS_CONFIG, String.valueOf("14400000")));
         topicConfig = new Config(entries);
         alterConfigs = new HashMap<ConfigResource, Config>();
-        
+
         alterConfigs.put(configResource, topicConfig);
         result=admin.alterConfigs(alterConfigs);
         response.setStatus(true);
-        		
+
       return response;
   }
 
