@@ -38,6 +38,58 @@ Publish Messages to SNS topic which is inturn subscribed by SQS/Email etc.
 
 ![image](https://user-images.githubusercontent.com/61533898/99506767-89518e00-29a8-11eb-8153-d6f7dd9d7c1b.png)
 
-11. 
+11. Subscription Created :
+
+![image](https://user-images.githubusercontent.com/61533898/99506941-c74eb200-29a8-11eb-8fa1-bb3785b1ecdb.png)
+
+12. Verify the dashboard :
+
+![image](https://user-images.githubusercontent.com/61533898/99507016-de8d9f80-29a8-11eb-8786-191c5f449220.png)
+
+13. Create permission for SQS queue to subscribe from SNS topic by copying ARN details :
+
+![image](https://user-images.githubusercontent.com/61533898/99507131-ffee8b80-29a8-11eb-85a4-e244f80288b2.png)
+
+14. Subscribe to SNS topic :
+
+![image](https://user-images.githubusercontent.com/61533898/99507214-1ac10000-29a9-11eb-8a05-05695480b0e4.png)
+
+15. Publish a simple message from SNS :
+
+![image](https://user-images.githubusercontent.com/61533898/99507267-2f04fd00-29a9-11eb-9b31-8f6c9d8ae0ab.png)
+
+
+![image](https://user-images.githubusercontent.com/61533898/99507443-62478c00-29a9-11eb-8505-9891754d007e.png)
+
+![image](https://user-images.githubusercontent.com/61533898/99507521-79867980-29a9-11eb-8778-6a8facb6fae3.png)
+
+16. Validate at SQS end :
+
+![image](https://user-images.githubusercontent.com/61533898/99507562-8acf8600-29a9-11eb-9e47-496253c884d2.png)
+
+![image](https://user-images.githubusercontent.com/61533898/99507601-9ae76580-29a9-11eb-94dd-19948a89af87.png)
+
+![image](https://user-images.githubusercontent.com/61533898/99507630-a3d83700-29a9-11eb-832d-601717338336.png)
+
+![image](https://user-images.githubusercontent.com/61533898/99507664-ae92cc00-29a9-11eb-871a-655489e76a2f.png)
+
+![image](https://user-images.githubusercontent.com/61533898/99507683-b81c3400-29a9-11eb-9b5e-806e375a02f5.png)
+
+17. Create a simple subscription to your EMAIL from SNS :
+
+![image](https://user-images.githubusercontent.com/61533898/99507775-d2eea880-29a9-11eb-9c5e-ed9955f74e70.png)
+
+![image](https://user-images.githubusercontent.com/61533898/99507810-de41d400-29a9-11eb-8dd8-7faf78f168c7.png)
+
+
+18. Mail Recieved :
+
+![image](https://user-images.githubusercontent.com/61533898/99507865-eef24a00-29a9-11eb-93be-c0592f8fb325.png)
+
+
+19. Subscriptions :
+
+![image](https://user-images.githubusercontent.com/61533898/99507943-0598a100-29aa-11eb-9297-92e03cc1a182.png)
+
 
 
