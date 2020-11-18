@@ -67,3 +67,8 @@ Less memory Tuning issue as it is easy to tune | pulsar as well as bookkeeper bo
 Higher throughput, twice of pulsar | Lower throughput
 Lower Latency | Higher Latency
 
+
+### Observations :
+
+- Pulsar has only limited support for message queuing because it misses popular messaging features like message XA transactions, routing, message filtering, etc. that are commonly used with messaging systems like IBM MQ, RabbitMQ, and ActiveMQ. 
+- Pulsar has only limited support for event streaming. For example, it does not support exactly-once delivery and processing semantics, which disqualifies it for most use cases in practice
