@@ -11,8 +11,12 @@ Does your system care about an event? | Do other systems care about an event?
 Two Queue types Standard and FIFO | 
 Standard queue gives High throughput, no ordering of messages, does not gurantee exactly once delivery | 
 FIFO quarantees but with lower throughput |
- | Pub/Sub natively supports both fan-in
+. | Pub/Sub natively supports both fan-in
 subscriber application initiates requests to the Pub/Sub server to retrieve messages, similar to Amazon SQS. | Pub/Sub (SNS) initiates requests to your subscriber application to deliver messages.
+. | SNS supports several end points such as email, sms, http end point and SQS. 
+SQS is mainly used to decouple applications or integrate applications. | SNS distributes several copies of message to several subscribers.
+Messages can be stored in SQS for short duration of time (max 14 days) | 
+
 
 
 
