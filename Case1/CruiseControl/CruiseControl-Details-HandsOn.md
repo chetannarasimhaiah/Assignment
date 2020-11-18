@@ -66,3 +66,36 @@ Fix offline replicas
  - Start Cruisecontrol
  - Verify the setup by visiting the cruisecontrol UI/or through postman API call.
 
+
+### Setup of UI on my machine :
+
+- To find cluster state :
+![image](https://user-images.githubusercontent.com/61533898/99568613-ae202280-29f5-11eb-8b3a-f8d28d6a9f32.png)
+
+- To find cluster load :
+![image](https://user-images.githubusercontent.com/61533898/99568908-fa6b6280-29f5-11eb-86cc-adf706f49ac2.png)
+
+- Adminsitrative operations :
+![image](https://user-images.githubusercontent.com/61533898/99568976-15d66d80-29f6-11eb-8be4-6dac0e947109.png)
+
+
+### Sample experiment on rebalancing of cluster :
+
+- Bring in a new node into the cluster. The new node has no topics with it
+![image](https://user-images.githubusercontent.com/61533898/99570001-54205c80-29f7-11eb-8404-d203e32789d6.png)
+
+- Now do Add Broker/remove broker admin activity 
+![image](https://user-images.githubusercontent.com/61533898/99570141-8631be80-29f7-11eb-97a5-8f06201a1091.png)
+
+
+![image](https://user-images.githubusercontent.com/61533898/99570569-238cf280-29f8-11eb-9230-734c50cf9064.png)
+
+-  Now lets see the result 
+![image](https://user-images.githubusercontent.com/61533898/99570708-59ca7200-29f8-11eb-9c25-64c5418b3613.png)
+
+All the four brokers have almost equal share of leaders and partitions
+
+### Summarise :
+
+CruiseControl gives lot of scope for reduction of manual effort along with its wonderful UI which has details along with valid metrics as well as various operations which can be auto done or manually done but with very little effort. This also resolves human error. For example a simple partition re-assignment which would take hours could be completed within few hours just monitoring.
+
